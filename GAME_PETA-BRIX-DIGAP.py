@@ -1,10 +1,9 @@
 import random
 
-# Stylized rooster art
 def display_rooster_art():
     rooster_art = """
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣤⣴⣿⣧⣴⡆⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣤⣴⣿⣧⣴⡆⠀⠀
 ⠀⠀⠀⠀⠠⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⢿⠟⢋⣡⢌⠉⠉⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠙⢿⣿⣷⣦⢰⣧⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣷⠺⠿⢷⡀⠀⠀
 ⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⢸⣿⣇⠐⣶⡀⠀⠀⠀
@@ -16,12 +15,12 @@ def display_rooster_art():
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠿⠿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣠⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢉⣿⣿⡏⣿⡶⣤⣄⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠈⠁⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢉⣿⣿⡏⣿⡶⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠈⠁⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     """
     print(rooster_art)
 
-# Initialize roosters
+#mga unang pagpipiliian na manok
 ROOSTER_DATABASE = [
     {"name": "Fighter", "attack": 19, "defense": 5, "level": 1},
     {"name": "Speeder", "attack": 16, "defense": 4, "level": 1},
@@ -29,17 +28,17 @@ ROOSTER_DATABASE = [
     {"name": "Champion", "attack": 20, "defense": 7, "level": 1}
 ]
 
-# Function to display rooster stats
+#stats ng mga manok
 def display_rooster(rooster):
     print(f"\nYour Rooster: {rooster['name']}")
     print(f"  Level: {rooster['level']}")
     print(f"  Attack: {rooster['attack']}")
     print(f"  Defense: {rooster['defense']}\n")
 
-# Simulate a fight with interactive choices
+#coice ng player kung ano ang gagawin sa laban
 def fight(rooster, opponent):
     print(f"\nThe fight begins! {rooster['name']} vs {opponent['name']}\n")
-    display_rooster_art()  # Show rooster art before the fight
+    display_rooster_art()  #para print ang manok bago laban
 
     rooster_health = 100
     opponent_health = 100
@@ -47,49 +46,55 @@ def fight(rooster, opponent):
     rooster_blocking = False
 
     while rooster_health > 0 and opponent_health > 0:
-        # Player's turn
+        #para sa player
         print(f"\nYour turn!\n 1. Attack\n 2. Block (Remaining: {block_count})")
-        choice = input("Choose your action (1 or 2): ").strip()
-
-        if choice == "1":
-            damage = max(1, rooster['attack'] - opponent['defense'])
-            opponent_health -= damage
-            print(f"You attack {opponent['name']} for {damage} damage!")
-            rooster_blocking = False
-        elif choice == "2":
-            if block_count > 0:
-                print(f"You prepare to block the next attack!")
-                rooster_blocking = True
-                block_count -= 1
-            else:
-                print("You are out of blocks! You lose your turn.")
+        try:
+            choice = input("Choose your action (1 or 2): ").strip()
+            if choice == "1":
+                damage = max(1, rooster['attack'] - opponent['defense'])
+                opponent_health -= damage
+                print(f"You attack {opponent['name']} for {damage} damage!")
                 rooster_blocking = False
-        else:
-            print("Invalid choice, please enter either 1 or 2!")
-            rooster_blocking = False
-            continue  # Ask for a valid input again
+                
+            elif choice == "2":
+                if block_count > 0:
+                    print(f"You prepare to block the next attack!")
+                    rooster_blocking = True
+                    block_count -= 1
+                else:
+                    print("You are out of blocks! You lose your turn.")
+                    rooster_blocking = False
+            else:
+                print("Invalid choice, please enter either 1 or 2!")
+                rooster_blocking = False
+                continue  #continue para kuha ulit ng input
+            
+        except KeyboardInterrupt: #sir na trauma ako sa exam kaya nilagyan ko na rin here BWAHAHAAHAHHAAHAHHAHA
+            print("\nThe game was interrupted by the user.")
+            return False
 
-        # Check if opponent is defeated
-        if opponent_health <= 0:
+        
+        if opponent_health <= 0: #nag check if patay na kalaban
             print(f"\n{opponent['name']} is defeated! {rooster['name']} wins!\n")
             return True
 
-        # Opponent's turn with random damage
+        #kalaban naman ang aatake muna
         opponent_damage = random.randint(1, opponent['attack'])
         damage = max(1, opponent_damage - (rooster['defense'] + 3 if rooster_blocking else rooster['defense']))
         rooster_health -= damage
         print(f"{opponent['name']} attacks you for {damage} damage!")
 
-        # Check if player is defeated
+        #check if patay na ba manok muuuu
         if rooster_health <= 0:
             print(f"\n{rooster['name']} is defeated! {opponent['name']} wins!\n")
             return False
 
-        # Display health stats
+        #para sa health ng manok mo anti kung hanggang kelan pa mabubuhay
         print(f"\n{rooster['name']} Health: {rooster_health}")
         print(f"{opponent['name']} Health: {opponent_health}\n")
+        
 
-# Championship logic where you fight all opponents
+#dito na yung labannnnnn 
 def play_game():
     print("Welcome to Rooster Fight Championship!\n")
 
@@ -97,13 +102,22 @@ def play_game():
     for i, rooster in enumerate(ROOSTER_DATABASE):
         print(f"  {i + 1}. {rooster['name']} (Attack: {rooster['attack']}, Defense: {rooster['defense']})")
 
-    choice = int(input("Enter the number of your chosen rooster: ")) - 1
+    try:
+        choice = int(input("Enter the number of your chosen rooster: ")) - 1
+        if choice < 0 or choice >= len(ROOSTER_DATABASE):
+            print("Invalid rooster number! Exiting the game.")
+            return
+        
+    except ValueError: #pati dito sa peta sir nag oover think nako kaya lahat na i try except BWHAHAAHAHHAAHAH
+        print("Invalid input! Please enter a valid number.")
+        return
+
     player_rooster = ROOSTER_DATABASE[choice]
 
     team = [player_rooster]
 
     display_rooster(player_rooster)
-    display_rooster_art()  # Display rooster art after choosing
+    display_rooster_art()  #display ulit manok bakit ba para may style mwehehhehe
 
     print("\nYou enter the championship arena!\n")
 
@@ -115,7 +129,7 @@ def play_game():
         opponent = random.choice(remaining_opponents)
         print(f"Your opponent is {opponent['name']} (Attack: {opponent['attack']}, Defense: {opponent['defense']})\n")
 
-        # Start the fight
+        #dito na nag start labanssss
         won = fight(player_rooster, opponent)
 
         if not won:
@@ -125,13 +139,13 @@ def play_game():
         wins += 1
         print(f"You have defeated {opponent['name']}!\n")
 
-        # Level up the player's rooster
+        # Level up ng manok mo
         player_rooster['level'] += 1
         player_rooster['attack'] += 5
         display_rooster(player_rooster)
-        display_rooster_art()  # Display rooster art after leveling up
+        display_rooster_art()  #manok art ulits
 
-        # Offer to steal the defeated rooster
+        #here naman choice if want mo ba kunin manok ng kalaqban or hindi
         while True:
             choice = input(f"Do you want to take {opponent['name']} into your team? (yes/no): ").strip().lower()
             if choice == "yes":
@@ -144,16 +158,24 @@ def play_game():
             else:
                 print("Invalid input. Please enter 'yes' or 'no'.")
 
-        # Choose rooster for next fight
+        #pag nag steal ka o hindi dito ka mamimili ng manok na gagamitin mo sa labsn
         print("Choose your rooster for the next battle:")
         for i, rooster in enumerate(team):
             print(f"  {i + 1}. {rooster['name']} (Attack: {rooster['attack']}, Defense: {rooster['defense']})")
 
-        choice = int(input("Enter the number of your chosen rooster: ")) - 1
-        player_rooster = team[choice]
+        try:
+            choice = int(input("Enter the number of your chosen rooster: ")) - 1
+            if choice < 0 or choice >= len(team):
+                print("Invalid rooster number! Exiting the game.")
+                break
+            player_rooster = team[choice]
+            
+        except ValueError:#para sure na sure na talaga BWAHAHAHAH
+            print("Invalid input! Please enter a valid number.")
+            break
 
-    if wins >= 10:
+    if wins >= 10:#pag nanalo ka 1o beses panalo ka na sa championship
         print("Congratulations! You are the champion of the tournament!\n")
 
-# Start the game
+
 play_game()
